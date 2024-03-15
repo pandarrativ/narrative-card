@@ -10,6 +10,16 @@ from ..scripts.WidgetSettings import WidgetSetting
 from ..ai_models.openai_api import OpenAIAPI
 
 
+# class SampleView(APIView):
+#     def post(self, request, format=None):
+#         try:
+#             return Response("asd", status=status.HTTP_200_OK)
+#         except Exception as e:
+#             return Response(e, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+#     def get(self, request):
+#         pass
+
 
 
 class GptAPI:
