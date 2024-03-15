@@ -1,0 +1,18 @@
+/* set page left/right shit */
+.card-crestion-main{
+    overflow: hidden;
+}
+
+.creation-main-body{
+    width: 200%;
+    height: 100%;
+    transition: transform 1s ease;
+}
+
+.creation-body-part{
+    width: 25%;
+    height: 100%;
+    background-color: cyan;
+    border: 2px #000 solid;
+}
+
