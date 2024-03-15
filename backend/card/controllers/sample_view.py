@@ -1,20 +1,12 @@
 
 from ..scripts.script_util import PromptTemplate
 import datetime
-from ..dao import ScriptPlayDAO,WidgetDAO
+from .sample_storing_mongdb import ScriptPlayDAO,WidgetDAO
 from ..utils.utils import *
 from ..utils.image_util import *
 from ..scripts.WidgetSettings import WidgetSetting
 
 # scripts
-from ..scripts.ShantaramConfig import Shantaram
-from ..scripts.HarryPotterConfig import HarryPotter
-from ..scripts.WitcherConfig import Witcher
-from ..scripts.ThreeBodyConfig import ThreeBody
-from ..scripts.EnduranceConfig import EnduranceExpedition
-from ..scripts.TheHudsonConfig import MiracleOnTheHudson
-from ..scripts.TubmanConfig import HarrietTubman
-
 from ..ai_models.openai_api import OpenAIAPI
 
 
