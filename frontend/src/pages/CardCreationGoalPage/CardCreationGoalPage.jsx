@@ -42,7 +42,7 @@ function CardCreationGoalPage() {
                     value={goal} 
                     onChange={(e) => dispatch(cardCreationActions.setGoal(e.target.value))}  // store data into redux
                 ></textarea>
-                <button className="btn" onClick={analyzeGoal}>Analyze</button>
+                <button className="btn" onClick={() => setShowDetails(true)}>Analyze</button>
             </div>
         )
     }
