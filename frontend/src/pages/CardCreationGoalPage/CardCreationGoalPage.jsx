@@ -6,6 +6,7 @@ import axios from "axios";
 import CardGoalLevel from "../../components/CardGoalLevel/CardGoalLevel";
 import CardGoalSwitch from "../../components/CardGoalSwitch/CardGoalSwitch";
 import { cardCreationActions } from "../../reducers/cardCreationReducer";
+import { newCardRouter } from "../../configs/URLs";
 
 function CardCreationGoalPage() {
     // redux
@@ -19,7 +20,16 @@ function CardCreationGoalPage() {
 
     // analysze
     const analyzeGoal = () => {
-        axios.post()
+        axios.post(newCardRouter, {
+            user_id:"temp01",   // use temp id for now in our systems
+            goal: goal
+        })
+        .then((resp) => {
+            // operations
+        })
+        .catch((e) => {
+            // when errors occurs
+        })
     }
 
     const renderOverallGoal = () => {

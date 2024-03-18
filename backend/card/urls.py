@@ -3,5 +3,5 @@ from .views import *
 
 
 urlpatterns = [
-    path("conversation", ConversationGPTApiView.as_view()),
+    path("example", ExampleGPTApiView.as_view()),
 ]

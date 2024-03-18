@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-%9uf#n=tc(4j^qexk+kvhhicodo*2-wjwmj+z+eb_&-m&amq^$
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['3.15.87.7', 'localhost', "127.0.0.1"]
+ALLOWED_HOSTS = ['localhost', "127.0.0.1"]
 
 
 
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # "users.apps.UsersConfig",
     'rest_framework',
-    "users",
     'corsheaders',
 ]
 
@@ -83,7 +82,7 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'simu_db',
+        'NAME': 'card_db',
     }
 }
 

@@ -10,8 +10,7 @@ class MongoDBUtil:
     # set db name
     @staticmethod
     def get_db(db_name="card_db"):
-        return MongoConnection().client[db_name]
-    
+        return MongoConnection().client[db_name]   
 
     # get collection, default:card
     @staticmethod
