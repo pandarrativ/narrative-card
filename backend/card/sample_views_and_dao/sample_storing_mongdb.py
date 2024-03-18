@@ -3,16 +3,14 @@ import uuid
 from ..utils.utils import get_current_time
 
 
+#Examples of storing data
 
-class SageDAo:
-    collection = MongoDBUtil.get_collection(collection="card_sage")
-
-
-
+# class SageDAo:
+#     collection = MongoDBUtil.get_collection(collection="card_sage")
 
 
-class CardDAO:
-    collection = MongoDBUtil.get_collection()
+# class CardDAO:
+#     collection = MongoDBUtil.get_collection()
 
 
     # Below is the code from another project. Use it as refernce for CRUD operations

@@ -20,7 +20,7 @@ class OpenAIAPI:
  ##############################################################################################################################################
  ## Below are the functions to set openai model parameters and send to openai
  ##############################################################################################################################################
-    @staticmethod
+    @staticmethod      #send a single line to prompt
     def send_prompt(prompt, model = "gpt-35-turbo", is_json=False):
         if is_json:
             response = OpenAIAPI.client.chat.completions.create(
@@ -37,7 +37,9 @@ class OpenAIAPI:
         resp =response.choices[0].message.content
         return resp
 
-    @staticmethod
+
+
+    @staticmethod        #  send a conversation (a list of messages)
     def send_messages(messages, model = "gpt-35-turbo", is_json=False):
         if is_json:
             response = OpenAIAPI.client.chat.completions.create(

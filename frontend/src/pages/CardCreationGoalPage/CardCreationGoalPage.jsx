@@ -1,22 +1,48 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
 import "./card-creationgoal.css";
+import axios from "axios";
 import CardGoalLevel from "../../components/CardGoalLevel/CardGoalLevel";
 import CardGoalSwitch from "../../components/CardGoalSwitch/CardGoalSwitch";
+import { cardCreationActions } from "../../reducers/cardCreationReducer";
+import { newCardRouter } from "../../configs/URLs";
 
 function CardCreationGoalPage() {
+    // redux
+    const dispatch = useDispatch();
+    const goal = useSelector((state) => state.cardCreation.goal);
+    // navigate
     const navigate = useNavigate();
-
     const [showDetails, setShowDetails] = useState(false)
 
+
+
+    // analysze
+    const analyzeGoal = () => {
+        axios.post(newCardRouter, {
+            user_id:"temp01",   // use temp id for now in our systems
+            goal: goal
+        })
+        .then((resp) => {
+            // operations
+        })
+        .catch((e) => {
+            // when errors occurs
+        })
+    }
 
     const renderOverallGoal = () => {
         return (
             <div className=" bg-sky-500 w-[960px] h-3/6 flex flex-col gap-4 items-center justify-between px-24 py-8 rounded-lg">
                 <div className="">Tell pandarrativ about your goals</div>
-                <textarea className="textarea w-full flex-grow" placeholder="type in your goals"></textarea>
-                <button className="btn" onClick={() => setShowDetails(true)}>Analyze</button>
-                
+                <textarea 
+                    className="textarea w-full flex-grow" 
+                    placeholder="type in your goals" 
+                    value={goal} 
+                    onChange={(e) => dispatch(cardCreationActions.setGoal(e.target.value))}  // store data into redux
+                ></textarea>
+                <button className="btn" onClick={analyzeGoal}>Analyze</button>
             </div>
         )
     }
