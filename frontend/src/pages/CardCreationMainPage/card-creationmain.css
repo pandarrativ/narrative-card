@@ -1,13 +1,14 @@
 /* set page left/right shit */
-.card-crestion-main{
+.card-creation-main{
     overflow: hidden;
 }
 
 .creation-main-body{
     width: 200%;
-    height: 100%;
+    height: calc(100% - 64px);
     transition: transform 1s ease;
 }
+
 
 .creation-body-part{
     width: 25%;
@@ -15,4 +16,5 @@
     background-color: cyan;
     border: 2px #000 solid;
 }
+
 
