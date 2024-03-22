@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./card-creationmain.css"
+import WordEditor from "../../components/WordEditor/WordEditor";
 import MessageBlock from "../../components/MessageBlock/MessageBlock";
 
 function CardCreationMainPage() {
@@ -70,9 +71,7 @@ function CardCreationMainPage() {
     }
     const renderStoryComponent = () => {
         return (
-            <>
-                Story
-            </>
+            <WordEditor></WordEditor>
         )
     }
     const renderStorySegmentComponent = () => {
