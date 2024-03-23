@@ -1,4 +1,6 @@
 import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
+import {HeadingTagType, $createHeadingNode } from "@lexical/rich-text";
+import { $setBlocksType } from "@lexical/selection";
 import {mergeRegister} from '@lexical/utils';
 import {
   $getSelection,
@@ -85,8 +87,30 @@ export default function ToolbarPlugin() {
     );
   }, [editor, updateToolbar]);
 
+
+    //
+    const handleFontSize = (headingTagType) => {
+        editor.update(() => {
+            const selection = $getSelection();
+            console.log(selection)
+            if ($isRangeSelection(selection)) {
+                $setBlocksType(selection, () => $createHeadingNode(headingTagType));
+            }
+        });
+    };
+
   return (
     <div className="toolbar" ref={toolbarRef}>
+    <select className='toolbar-btn-select' onChange={(e) => handleFontSize(e.target.value)}>
+        <option value="" className='font-size-normal'>Normal</option>
+        <option value="h1" className='font-size-h1'>Heading1</option>
+        <option value="h2" className='font-size-h2'>Heading2</option>
+        <option value="h3" className='font-size-h3'>Heading3</option>
+        <option value="h4" className='font-size-h4'>Heading4</option>
+        <option value="h5" className='font-size-h5'>Heading5</option>
+        {/* <option value="fontSizeSmall">Small</option> */}
+    </select>
+
       <button
         disabled={!canUndo}
         onClick={() => {

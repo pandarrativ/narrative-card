@@ -2,6 +2,7 @@ import "./word-editor.css";
 import {$getRoot, $getSelection} from 'lexical';
 import {useState, useEffect} from 'react';
 
+import {HeadingNode} from "@lexical/rich-text";
 import {AutoFocusPlugin} from '@lexical/react/LexicalAutoFocusPlugin';
 import {LexicalComposer} from '@lexical/react/LexicalComposer';
 import {RichTextPlugin} from '@lexical/react/LexicalRichTextPlugin';
@@ -37,10 +38,12 @@ const PlaceHolder = () => {
 
 function WordEditor() {
     const editorConfig = {
-        namespace: 'WordEditor',
+        namespace: 'Pandarrative Word Editor',
         theme,
+        nodes: [HeadingNode],
         onError,
-      };
+    };
+    
 
     return (
         <div id="word-editor">

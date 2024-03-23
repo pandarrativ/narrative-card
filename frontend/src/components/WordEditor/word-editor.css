@@ -113,3 +113,29 @@ p {
 .testtt{
     color: red;
 }
+
+/* font size */
+/* for mobile end, you might need add media query: https://boosted.orange.com/docs/4.6/content/typography/ */
+#word-editor h1,
+.font-size-h1{
+    font-size: 2.125rem;
+}
+#word-editor h2,
+.font-size-h2{
+    font-size: 1.875rem;
+}
+#word-editor h3,
+.font-size-h3{
+    font-size: 1.5rem;
+}
+#word-editor h4,
+.font-size-h4{
+    font-size: 1.25rem;
+}
+#word-editor h5,
+.font-size-h5{
+    font-size: 1.125rem;
+}
+.font-size-normal{
+    font-size: 1rem;
+}
