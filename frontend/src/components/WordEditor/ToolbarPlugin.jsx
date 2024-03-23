@@ -1,4 +1,6 @@
 import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
+import {HeadingTagType, $createHeadingNode } from "@lexical/rich-text";
+import { $setBlocksType } from "@lexical/selection";
 import {mergeRegister} from '@lexical/utils';
 import {
   $getSelection,
@@ -25,13 +27,9 @@ import iconLeftAlign from "./icons/left-align.svg";
 import iconRightAlign from "./icons/right-align.svg";
 import iconCenterAlign from "./icons/center-align.svg";
 import iconJustifyAlign from "./icons/justify-align.svg";
-// import icon from "./icons/";
-// import icon from "./icons/";
-// import icon from "./icons/";
-// import icon from "./icons/";
-// import icon from "./icons/";
 
 const LowPriority = 1;
+
 
 export default function ToolbarPlugin() {
   const [editor] = useLexicalComposerContext();
@@ -42,6 +40,7 @@ export default function ToolbarPlugin() {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
+
 
   const updateToolbar = useCallback(() => {
     const selection = $getSelection();
@@ -88,8 +87,30 @@ export default function ToolbarPlugin() {
     );
   }, [editor, updateToolbar]);
 
+
+    //
+    const handleFontSize = (headingTagType) => {
+        editor.update(() => {
+            const selection = $getSelection();
+            console.log(selection)
+            if ($isRangeSelection(selection)) {
+                $setBlocksType(selection, () => $createHeadingNode(headingTagType));
+            }
+        });
+    };
+
   return (
     <div className="toolbar" ref={toolbarRef}>
+    <select className='toolbar-btn-select' onChange={(e) => handleFontSize(e.target.value)}>
+        <option value="" className='font-size-normal'>Normal</option>
+        <option value="h1" className='font-size-h1'>Heading1</option>
+        <option value="h2" className='font-size-h2'>Heading2</option>
+        <option value="h3" className='font-size-h3'>Heading3</option>
+        <option value="h4" className='font-size-h4'>Heading4</option>
+        <option value="h5" className='font-size-h5'>Heading5</option>
+        {/* <option value="fontSizeSmall">Small</option> */}
+    </select>
+
       <button
         disabled={!canUndo}
         onClick={() => {
@@ -97,7 +118,6 @@ export default function ToolbarPlugin() {
         }}
         className="toolbar-item spaced"
         aria-label="Undo">
-        {/* <i className="format undo" /> */}
         <img src={iconRotateLeft} alt="cancel"></img>
       </button>
       <button
@@ -107,25 +127,25 @@ export default function ToolbarPlugin() {
         }}
         className="toolbar-item"
         aria-label="Redo">
-        {/* <i className="format redo" /> */}
         <img src={iconRotateRight} alt="re-do"></img>
       </button>
+      
+        <div className='editor-toolbar-divider'></div>
+
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
         }}
         className={'toolbar-item spaced ' + (isBold ? 'active' : '')}
         aria-label="Format Bold">
-        {/* <i className="format bold" /> */}
         <img src={iconBold} alt="bold"></img>
       </button>
       <button
         onClick={() => {
-          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
+            editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic")
         }}
         className={'toolbar-item spaced ' + (isItalic ? 'active' : '')}
         aria-label="Format Italics">
-        {/* <i className="format italic" /> */}
         <img src={iconItalic} alt="italic"></img>
       </button>
       <button
@@ -144,6 +164,9 @@ export default function ToolbarPlugin() {
         aria-label="Format Strikethrough">
         <img src={iconStrikeThrough} alt="strike-through"></img>
       </button>
+
+      <div className='editor-toolbar-divider'></div>
+
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left');

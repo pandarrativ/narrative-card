@@ -2,4 +2,140 @@
     background-color: white;
     height:100%;
     width: 100%;
+    border-radius: 8px;
+}
+
+.editor-container{
+    height: 100%;
+}
+
+.editor-inner{
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+    padding: 0.5rem;
+    height: calc(100% - 40px);  /* 40px for toobar*/
+    overflow: auto;
+    position: relative;
+}
+.editor-input:hover,
+.editor-input:focus{
+    /* border: none; */
+    outline: none;
+    height: 100%;
+}
+
+.editor-placeholder{
+    color: #999;
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    top: 8px;
+    left: 10px;
+    font-size: 15px;
+    user-select: none;
+    display: inline-block;
+    pointer-events: none;
+}
+
+
+
+
+
+/* toobar */
+.toolbar{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    padding: 1rem 0.5rem 0.5rem 0.5rem ;
+}
+
+.editor-toolbar-divider{
+    border-left: 1px solid rgba(0, 0, 0, 0.16);
+}
+.toolbar-item{
+    height: 1.75rem;
+    width: 1.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+}
+#word-editor .toolbar .active{
+    background-color: rgba(0, 0, 0, 0.16);
+
+}
+
+.toolbar-item>img{
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+
+/* text styles */
+.text-bold {
+    font-weight: bold;
+}
+
+.text-italic {
+    font-style: italic;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.text-code {
+    background-color: #f0f2f5;
+    padding: 1px 0.25rem;
+    font-family: Menlo, Consolas, Monaco, monospace;
+    font-size: 94%;
+}
+
+.text-highlight {
+    margin: 0 5px;
+}
+
+.text-strikethrough {
+    text-decoration: line-through;
+}
+
+.text-subscript {
+    vertical-align: sub;
+}
+
+.text-superscript {
+    vertical-align: super;
+}
+
+p {
+    margin: 0;
+}
+
+.testtt{
+    color: red;
+}
+
+/* font size */
+/* for mobile end, you might need add media query: https://boosted.orange.com/docs/4.6/content/typography/ */
+#word-editor h1,
+.font-size-h1{
+    font-size: 2.125rem;
+}
+#word-editor h2,
+.font-size-h2{
+    font-size: 1.875rem;
+}
+#word-editor h3,
+.font-size-h3{
+    font-size: 1.5rem;
+}
+#word-editor h4,
+.font-size-h4{
+    font-size: 1.25rem;
+}
+#word-editor h5,
+.font-size-h5{
+    font-size: 1.125rem;
+}
+.font-size-normal{
+    font-size: 1rem;
 }
