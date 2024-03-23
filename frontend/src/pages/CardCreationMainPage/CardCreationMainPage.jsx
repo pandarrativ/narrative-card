@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./card-creationmain.css"
 import WordEditor from "../../components/WordEditor/WordEditor";
+// import FullEditor from "../../components/WordEditor/FullEditor";
 import MessageBlock from "../../components/MessageBlock/MessageBlock";
 
 function CardCreationMainPage() {
@@ -72,7 +73,8 @@ function CardCreationMainPage() {
     const renderStoryComponent = () => {
         return (
             <div className="card-story py-4 px-8 h-full w-full">
-                <WordEditor></WordEditor>
+                {/* <WordEditor></WordEditor> */}
+                {/* <FullEditor></FullEditor> */}
             </div>
         )
     }

@@ -1,8 +1,5 @@
 import "./word-editor.css";
-import {$getRoot, $getSelection} from 'lexical';
-import {useState, useEffect} from 'react';
-
-import {HeadingNode} from "@lexical/rich-text";
+import "./index.css";
 import {AutoFocusPlugin} from '@lexical/react/LexicalAutoFocusPlugin';
 import {LexicalComposer} from '@lexical/react/LexicalComposer';
 import {RichTextPlugin} from '@lexical/react/LexicalRichTextPlugin';
@@ -10,24 +7,23 @@ import {ContentEditable} from '@lexical/react/LexicalContentEditable';
 import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 
-import ToolbarPlugin from "./ToolbarPlugin";
+import ToolbarPlugin from './plugins/ToolbarPlugin/index';
+import PlaygroundEditorTheme from './themes/PlaygroundEditorTheme';
+import PlaygroundNodes from './nodes/PlaygroundNodes';
 
-const theme = {
-    text: {
-        bold: "text-bold",
-        italic: "text-italic",
-        underline: "text-underline",
-        code: 'text-code',
-        highlight: 'text-highlight',
-        strikethrough: 'text-strikethrough',
-        subscript: 'text-subscript',
-        superscript: 'text-superscript',
-    },
-}
+// const theme = {
+//     text: {
+//         bold: "text-bold",
+//         italic: "text-italic",
+//         underline: "text-underline",
+//         code: 'text-code',
+//         highlight: 'text-highlight',
+//         strikethrough: 'text-strikethrough',
+//         subscript: 'text-subscript',
+//         superscript: 'text-superscript',
+//     },
+// }
 
-function onError(error) {
-    console.error(error);
-}
 
 const PlaceHolder = () => {
     return (
@@ -37,17 +33,25 @@ const PlaceHolder = () => {
 
 
 function WordEditor() {
-    const editorConfig = {
+    // const editorConfig = {
+    //     namespace: 'Pandarrative Word Editor',
+    //     theme,
+    //     nodes: [HeadingNode],
+    //     onError,
+    // };
+    const initialConfig = {
         namespace: 'Pandarrative Word Editor',
-        theme,
-        nodes: [HeadingNode],
-        onError,
-    };
+        nodes: [...PlaygroundNodes],
+        onError: (error) => {
+          throw error;
+        },
+        theme: PlaygroundEditorTheme,
+      };
     
 
     return (
         <div id="word-editor">
-            <LexicalComposer initialConfig={editorConfig}>
+            <LexicalComposer initialConfig={initialConfig}>
                 <div className="editor-container">
                     <ToolbarPlugin />
                     <div className="editor-inner">

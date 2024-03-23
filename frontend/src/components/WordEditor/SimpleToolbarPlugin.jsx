@@ -1,5 +1,5 @@
 import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-import {HeadingTagType, $createHeadingNode } from "@lexical/rich-text";
+import { $createHeadingNode } from "@lexical/rich-text";
 import { $setBlocksType } from "@lexical/selection";
 import {mergeRegister} from '@lexical/utils';
 import {
@@ -12,6 +12,7 @@ import {
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
+  applyNodeReplacement,
 } from 'lexical';
 import {useCallback, useEffect, useRef, useState} from 'react';
 import * as React from 'react';
@@ -31,7 +32,7 @@ import iconJustifyAlign from "./icons/justify-align.svg";
 const LowPriority = 1;
 
 
-export default function ToolbarPlugin() {
+export default function SimpleToolbarPlugin() {
   const [editor] = useLexicalComposerContext();
   const toolbarRef = useRef(null);
   const [canUndo, setCanUndo] = useState(false);
@@ -88,7 +89,7 @@ export default function ToolbarPlugin() {
   }, [editor, updateToolbar]);
 
 
-    //
+    //set font size
     const handleFontSize = (headingTagType) => {
         editor.update(() => {
             const selection = $getSelection();
@@ -98,7 +99,7 @@ export default function ToolbarPlugin() {
             }
         });
     };
-
+    
   return (
     <div className="toolbar" ref={toolbarRef}>
     <select className='toolbar-btn-select' onChange={(e) => handleFontSize(e.target.value)}>
@@ -107,7 +108,7 @@ export default function ToolbarPlugin() {
         <option value="h2" className='font-size-h2'>Heading2</option>
         <option value="h3" className='font-size-h3'>Heading3</option>
         <option value="h4" className='font-size-h4'>Heading4</option>
-        <option value="h5" className='font-size-h5'>Heading5</option>
+        <option value="h6" className='font-size-h5'>Heading5</option>
         {/* <option value="fontSizeSmall">Small</option> */}
     </select>
 

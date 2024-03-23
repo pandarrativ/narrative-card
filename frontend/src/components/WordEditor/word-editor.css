@@ -41,7 +41,7 @@
 
 
 /* toobar */
-.toolbar{
+/* .toolbar{
     display: flex;
     flex-direction: row;
     gap: 4px;
@@ -67,11 +67,11 @@
 .toolbar-item>img{
     width: 1.15rem;
     height: 1.15rem;
-}
+} */
 
 
 /* text styles */
-.text-bold {
+/* .text-bold {
     font-weight: bold;
 }
 
@@ -112,11 +112,11 @@ p {
 
 .testtt{
     color: red;
-}
+} */
 
 /* font size */
 /* for mobile end, you might need add media query: https://boosted.orange.com/docs/4.6/content/typography/ */
-#word-editor h1,
+/* #word-editor h1,
 .font-size-h1{
     font-size: 2.125rem;
 }
@@ -138,4 +138,4 @@ p {
 }
 .font-size-normal{
     font-size: 1rem;
-}
+} */
