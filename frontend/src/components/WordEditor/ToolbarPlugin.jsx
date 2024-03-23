@@ -25,13 +25,9 @@ import iconLeftAlign from "./icons/left-align.svg";
 import iconRightAlign from "./icons/right-align.svg";
 import iconCenterAlign from "./icons/center-align.svg";
 import iconJustifyAlign from "./icons/justify-align.svg";
-// import icon from "./icons/";
-// import icon from "./icons/";
-// import icon from "./icons/";
-// import icon from "./icons/";
-// import icon from "./icons/";
 
 const LowPriority = 1;
+
 
 export default function ToolbarPlugin() {
   const [editor] = useLexicalComposerContext();
@@ -42,6 +38,7 @@ export default function ToolbarPlugin() {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
+
 
   const updateToolbar = useCallback(() => {
     const selection = $getSelection();
@@ -97,7 +94,6 @@ export default function ToolbarPlugin() {
         }}
         className="toolbar-item spaced"
         aria-label="Undo">
-        {/* <i className="format undo" /> */}
         <img src={iconRotateLeft} alt="cancel"></img>
       </button>
       <button
@@ -107,25 +103,25 @@ export default function ToolbarPlugin() {
         }}
         className="toolbar-item"
         aria-label="Redo">
-        {/* <i className="format redo" /> */}
         <img src={iconRotateRight} alt="re-do"></img>
       </button>
+      
+        <div className='editor-toolbar-divider'></div>
+
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
         }}
         className={'toolbar-item spaced ' + (isBold ? 'active' : '')}
         aria-label="Format Bold">
-        {/* <i className="format bold" /> */}
         <img src={iconBold} alt="bold"></img>
       </button>
       <button
         onClick={() => {
-          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
+            editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic")
         }}
         className={'toolbar-item spaced ' + (isItalic ? 'active' : '')}
         aria-label="Format Italics">
-        {/* <i className="format italic" /> */}
         <img src={iconItalic} alt="italic"></img>
       </button>
       <button
@@ -144,6 +140,9 @@ export default function ToolbarPlugin() {
         aria-label="Format Strikethrough">
         <img src={iconStrikeThrough} alt="strike-through"></img>
       </button>
+
+      <div className='editor-toolbar-divider'></div>
+
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left');

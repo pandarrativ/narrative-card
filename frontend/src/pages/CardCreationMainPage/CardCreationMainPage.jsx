@@ -71,7 +71,9 @@ function CardCreationMainPage() {
     }
     const renderStoryComponent = () => {
         return (
-            <WordEditor></WordEditor>
+            <div className="card-story py-4 px-8 h-full w-full">
+                <WordEditor></WordEditor>
+            </div>
         )
     }
     const renderStorySegmentComponent = () => {
