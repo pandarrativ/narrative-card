@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import "./word-editor.css";
 import "./index.css";
 import {useSettings} from './context/SettingsContext';
@@ -52,14 +52,14 @@ import TreeViewPlugin from './plugins/TreeViewPlugin';
 import DragDropPaste from './plugins/DragDropPastePlugin';
 
 import {CAN_USE_DOM} from './shared/canUseDOM';
+import Placeholder from './ui/Placeholder';
 
-// const ImagesPlugin = React.lazy(() => import('./plugins/ImagesPlugin'));
 
-const PlaceHolder = () => {
-    return (
-        <div className="editor-placeholder">Enter your story...</div>
-    )
-}
+// const PlaceHolder = () => {
+//     return (
+//         <div className="editor-placeholder">Enter your story...</div>
+//     )
+// }
 
 
 function WordEditor() {
@@ -99,9 +99,7 @@ function WordEditor() {
 
         updateViewPortWidth();
         window.addEventListener('resize', updateViewPortWidth);
-        
-        console.log("is Small vp", CAN_USE_DOM && window.matchMedia('(max-width: 1025px)').matches);
-        console.log(floatingAnchorElem);
+    
 
         return () => {
             window.removeEventListener('resize', updateViewPortWidth);
@@ -138,7 +136,7 @@ function WordEditor() {
                             </div>
                             </div>
                         }
-                        placeholder={<PlaceHolder></PlaceHolder>}
+                        placeholder={<Placeholder>Enter your story...</Placeholder>}
                         ErrorBoundary={LexicalErrorBoundary}
                     />
                     <MarkdownShortcutPlugin />
