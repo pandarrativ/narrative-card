@@ -2,23 +2,52 @@
     background-color: white;
     height:100%;
     width: 100%;
+    /* width: 1100px; */
     border-radius: 8px;
 }
 
-.editor-container{
+.editor-container-outer{
     height: 100%;
 }
 
-.editor-inner{
+.testing:hover{
+    background-color: red;
+}
+
+/* fix the problem of list/unordered list */
+.PlaygroundEditorTheme__ol1{
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+
+.PlaygroundEditorTheme__ul{
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+
+
+
+/* .editor-inner{
     border-top: 1px solid rgba(0, 0, 0, 0.16);
     padding: 0.5rem;
-    height: calc(100% - 40px);  /* 40px for toobar*/
+    height: calc(100% - 40px);  
     overflow: auto;
     position: relative;
 }
 .editor-input:hover,
 .editor-input:focus{
-    /* border: none; */
     outline: none;
     height: 100%;
 }
@@ -36,7 +65,7 @@
     pointer-events: none;
 }
 
-
+ */
 
 
 

@@ -50,6 +50,7 @@ import SpeechToTextPlugin from './plugins/SpeechToTextPlugin';
 import AutoLinkPlugin from './plugins/AutoLinkPlugin';
 import TreeViewPlugin from './plugins/TreeViewPlugin';
 
+import {CAN_USE_DOM} from './shared/canUseDOM';
 
 const PlaceHolder = () => {
     return (
@@ -94,6 +95,26 @@ function WordEditor() {
         setFloatingAnchorElem(_floatingAnchorElem);
         }
     };
+    useEffect(() => {
+        const updateViewPortWidth = () => {
+            const isNextSmallWidthViewport =
+                CAN_USE_DOM && window.matchMedia('(max-width: 1025px)').matches;
+
+            if (isNextSmallWidthViewport !== isSmallWidthViewport) {
+                setIsSmallWidthViewport(isNextSmallWidthViewport);
+            }
+        };
+
+        updateViewPortWidth();
+        window.addEventListener('resize', updateViewPortWidth);
+        
+        console.log("is Small vp", CAN_USE_DOM && window.matchMedia('(max-width: 1025px)').matches);
+        console.log(floatingAnchorElem);
+
+        return () => {
+            window.removeEventListener('resize', updateViewPortWidth);
+        };
+    }, [isSmallWidthViewport]);
     
 
     return (
@@ -113,68 +134,73 @@ function WordEditor() {
             <HistoryPlugin />
 
 
-            <div className="editor-container">
+            <div className="editor-shell">
                 <ToolbarPlugin />
-                {/* <div className="editor-inner "> */}
-                <div className="editor-shell">
-                <RichTextPlugin
-                    contentEditable={<ContentEditable className="editor-input" />}
+                <div className="editor-container">
+                    <RichTextPlugin
+                    contentEditable={
+                        <div className="editor-scroller">
+                        <div className="editor" ref={onRef}>
+                            <ContentEditable className="ContentEditable__root"/>
+                        </div>
+                        </div>
+                    }
                     placeholder={<PlaceHolder></PlaceHolder>}
                     ErrorBoundary={LexicalErrorBoundary}
-                />
-                <MarkdownShortcutPlugin />
-                <CodeHighlightPlugin />
-                <ListPlugin />
-                <CheckListPlugin />
-                <ListMaxIndentLevelPlugin maxDepth={7} />
-                <TablePlugin
-                    hasCellMerge={tableCellMerge}
-                    hasCellBackgroundColor={tableCellBackgroundColor}
-                />
-                <TableCellResizer />
-                <ImagesPlugin />
-                <InlineImagePlugin />
-                <LinkPlugin />
-                <PollPlugin />
-                <TwitterPlugin />
-                <YouTubePlugin />
-                <FigmaPlugin />
-                {/* {!isEditable && <LexicalClickableLinkPlugin />} */}
-                <HorizontalRulePlugin />
-                <EquationsPlugin />
-                <TabFocusPlugin />
-                <TabIndentationPlugin />
-                <CollapsiblePlugin />
-                <PageBreakPlugin />
-                <LayoutPlugin />
-                {floatingAnchorElem && !isSmallWidthViewport && (
-                    <>
-                        <DraggableBlockPlugin anchorElem={floatingAnchorElem} />
-                        <CodeActionMenuPlugin anchorElem={floatingAnchorElem} />
-                        <FloatingLinkEditorPlugin
-                        anchorElem={floatingAnchorElem}
-                        isLinkEditMode={isLinkEditMode}
-                        // setIsLinkEditMode={setIsLinkEditMode}
-                        />
-                        <TableCellActionMenuPlugin
-                        anchorElem={floatingAnchorElem}
-                        cellMerge={true}
-                        />
-                        <FloatingTextFormatToolbarPlugin
-                        anchorElem={floatingAnchorElem}
-                        />
-                    </>
-                    )}
-                {/* {(isCharLimit || isCharLimitUtf8) && (
-                <CharacterLimitPlugin
-                    charset={isCharLimit ? 'UTF-16' : 'UTF-8'}
-                    maxLength={5}
-                />
-                )} */}
+                    />
+                    <MarkdownShortcutPlugin />
+                    <CodeHighlightPlugin />
+                    <ListPlugin />
+                    <CheckListPlugin />
+                    <ListMaxIndentLevelPlugin maxDepth={7} />
+                    <TablePlugin
+                        hasCellMerge={tableCellMerge}
+                        hasCellBackgroundColor={tableCellBackgroundColor}
+                    />
+                    <TableCellResizer />
+                    <ImagesPlugin />
+                    <InlineImagePlugin />
+                    <LinkPlugin />
+                    <PollPlugin />
+                    <TwitterPlugin />
+                    <YouTubePlugin />
+                    <FigmaPlugin />
+                    {/* {!isEditable && <LexicalClickableLinkPlugin />} */}
+                    <HorizontalRulePlugin />
+                    <EquationsPlugin />
+                    <TabFocusPlugin />
+                    <TabIndentationPlugin />
+                    <CollapsiblePlugin />
+                    <PageBreakPlugin />
+                    <LayoutPlugin />
+                    {floatingAnchorElem && !isSmallWidthViewport && (
+                        <>
+                            <DraggableBlockPlugin anchorElem={floatingAnchorElem} />
+                            <CodeActionMenuPlugin anchorElem={floatingAnchorElem} />
+                            {/* <FloatingLinkEditorPlugin
+                            anchorElem={floatingAnchorElem}
+                            isLinkEditMode={isLinkEditMode}
+                            // setIsLinkEditMode={setIsLinkEditMode}
+                            /> */}
+                            <TableCellActionMenuPlugin
+                            anchorElem={floatingAnchorElem}
+                            cellMerge={true}
+                            />
+                            <FloatingTextFormatToolbarPlugin
+                            anchorElem={floatingAnchorElem}
+                            />
+                        </>
+                        )}
+                    {/* {(isCharLimit || isCharLimitUtf8) && (
+                    <CharacterLimitPlugin
+                        charset={isCharLimit ? 'UTF-16' : 'UTF-8'}
+                        maxLength={5}
+                    />
+                    )} */}
 
 
-    
-                <TreeViewPlugin />
+        
+                    <TreeViewPlugin />
                 </div>
             </div>
             </LexicalComposer>
