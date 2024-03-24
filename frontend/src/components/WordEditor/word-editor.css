@@ -1,7 +1,12 @@
-#word-editor{
+/* overall layout settings */
+#word-editor,
+#plain-editor,
+#simple-editor{
     background-color: white;
     height:100%;
     width: 100%;
+    min-height: 200px;
+    /* width: 1100px; */
     border-radius: 8px;
 }
 
@@ -9,21 +14,42 @@
     height: 100%;
 }
 
-.editor-inner{
-    border-top: 1px solid rgba(0, 0, 0, 0.16);
-    padding: 0.5rem;
-    height: calc(100% - 40px);  /* 40px for toobar*/
-    overflow: auto;
-    position: relative;
-}
-.editor-input:hover,
-.editor-input:focus{
-    /* border: none; */
-    outline: none;
-    height: 100%;
+/* fix the problem of list/unordered list */
+.PlaygroundEditorTheme__ol1{
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
 }
 
-.editor-placeholder{
+.PlaygroundEditorTheme__ul{
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+
+#word-editor .editor-scroller,
+#plain-editor .editor-scroller,
+#simple-editor .editor-scroller{
+    resize: none;
+}
+
+
+/* plain/simple toolbar settings*/
+.editor-inner{
+    position: relative;
+    padding: 8px;
+}
+.plain-editor-placeholder{
     color: #999;
     overflow: hidden;
     position: absolute;
@@ -37,21 +63,24 @@
 }
 
 
-
-
-
-/* toobar */
-.toolbar{
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    padding: 1rem 0.5rem 0.5rem 0.5rem ;
+.editor-input:hover,
+.editor-input:focus{
+    outline: none;
+    height: 100%;
 }
 
-.editor-toolbar-divider{
+
+/* full toolbar settings*/
+.toolbar{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+.divider{
     border-left: 1px solid rgba(0, 0, 0, 0.16);
 }
-.toolbar-item{
+
+
+/* .toolbar-item{
     height: 1.75rem;
     width: 1.75rem;
     display: flex;
@@ -67,11 +96,11 @@
 .toolbar-item>img{
     width: 1.15rem;
     height: 1.15rem;
-}
+} */
 
 
 /* text styles */
-.text-bold {
+/* .text-bold {
     font-weight: bold;
 }
 
@@ -112,11 +141,11 @@ p {
 
 .testtt{
     color: red;
-}
+} */
 
 /* font size */
 /* for mobile end, you might need add media query: https://boosted.orange.com/docs/4.6/content/typography/ */
-#word-editor h1,
+/* #word-editor h1,
 .font-size-h1{
     font-size: 2.125rem;
 }
@@ -138,4 +167,4 @@ p {
 }
 .font-size-normal{
     font-size: 1rem;
-}
+} */

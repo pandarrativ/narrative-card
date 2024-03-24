@@ -6,6 +6,7 @@ import CardHistoryPage from './pages/CardHistoryPage/CardHistoryPage';
 import CardCreationGoalPage from './pages/CardCreationGoalPage/CardCreationGoalPage';
 import CardCreationMainPage from './pages/CardCreationMainPage/CardCreationMainPage';
 import CardCreationReviewPage from './pages/CardCreationReviewPage/CardCreationReviewPage';
+import Testing from './pages/Testing';
 
 // mindmap system
 
@@ -30,6 +31,7 @@ export default function Routers(){
                 <Route path="/card/creation-goal" element={<CardCreationGoalPage/>} />
                 <Route path='/card/creation-main' element={<CardCreationMainPage/>} />
                 <Route path='/card/creation-review' element={<CardCreationReviewPage/>} />
+                <Route path='/testing' element={<Testing></Testing>} />
                 
 
 
