@@ -1425,7 +1425,6 @@ button.action-button:disabled {
 
 .toolbar {
   display: flex;
-  margin-bottom: 1px;
   background: #fff;
   padding: 4px;
   border-top-left-radius: 10px;
