@@ -942,7 +942,7 @@ export default function ToolbarPlugin({
             aria-label="Insert code block">
             <i className="format code" />
           </button>
-          <button
+          {/* <button
             disabled={!isEditable}
             onClick={insertLink}
             className={'toolbar-item spaced ' + (isLink ? 'active' : '')}
@@ -950,7 +950,7 @@ export default function ToolbarPlugin({
             title="Insert link"
             type="button">
             <i className="format link" />
-          </button>
+          </button> */}
           <DropdownColorPicker
             disabled={!isEditable}
             buttonClassName="toolbar-item color-picker"
