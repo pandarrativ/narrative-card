@@ -14,16 +14,16 @@ import {
   $convertFromMarkdownString,
   $convertToMarkdownString,
 } from '@lexical/markdown';
-import {useCollaborationContext} from '@lexical/react/LexicalCollaborationContext';
+// import {useCollaborationContext} from '@lexical/react/LexicalCollaborationContext';
 import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-import {mergeRegister} from '@lexical/utils';
-import {CONNECTED_COMMAND, TOGGLE_CONNECT_COMMAND} from '@lexical/yjs';
+// import {mergeRegister} from '@lexical/utils';
+// import {CONNECTED_COMMAND, TOGGLE_CONNECT_COMMAND} from '@lexical/yjs';
 import {
   $createTextNode,
   $getRoot,
   $isParagraphNode,
   CLEAR_EDITOR_COMMAND,
-  COMMAND_PRIORITY_EDITOR,
+  // COMMAND_PRIORITY_EDITOR,
 } from 'lexical';
 import * as React from 'react';
 import {useCallback, useEffect, useState} from 'react';
@@ -36,43 +36,43 @@ import {
   SUPPORT_SPEECH_RECOGNITION,
 } from '../SpeechToTextPlugin';
 
-async function sendEditorState(editor: LexicalEditor): Promise<void> {
-  const stringifiedEditorState = JSON.stringify(editor.getEditorState());
-  try {
-    await fetch('http://localhost:1235/setEditorState', {
-      body: stringifiedEditorState,
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-      },
-      method: 'POST',
-    });
-  } catch {
-    // NO-OP
-  }
-}
+// async function sendEditorState(editor: LexicalEditor): Promise<void> {
+//   const stringifiedEditorState = JSON.stringify(editor.getEditorState());
+//   try {
+//     await fetch('http://localhost:1235/setEditorState', {
+//       body: stringifiedEditorState,
+//       headers: {
+//         Accept: 'application/json',
+//         'Content-type': 'application/json',
+//       },
+//       method: 'POST',
+//     });
+//   } catch {
+//     // NO-OP
+//   }
+// }
 
-async function validateEditorState(editor: LexicalEditor): Promise<void> {
-  const stringifiedEditorState = JSON.stringify(editor.getEditorState());
-  let response = null;
-  try {
-    response = await fetch('http://localhost:1235/validateEditorState', {
-      body: stringifiedEditorState,
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-      },
-      method: 'POST',
-    });
-  } catch {
-    // NO-OP
-  }
-  if (response !== null && response.status === 403) {
-    throw new Error(
-      'Editor state validation failed! Server did not accept changes.',
-    );
-  }
-}
+// async function validateEditorState(editor: LexicalEditor): Promise<void> {
+//   const stringifiedEditorState = JSON.stringify(editor.getEditorState());
+//   let response = null;
+//   try {
+//     response = await fetch('http://localhost:1235/validateEditorState', {
+//       body: stringifiedEditorState,
+//       headers: {
+//         Accept: 'application/json',
+//         'Content-type': 'application/json',
+//       },
+//       method: 'POST',
+//     });
+//   } catch {
+//     // NO-OP
+//   }
+//   if (response !== null && response.status === 403) {
+//     throw new Error(
+//       'Editor state validation failed! Server did not accept changes.',
+//     );
+//   }
+// }
 
 export default function ActionsPlugin({
   isRichText,
@@ -80,43 +80,43 @@ export default function ActionsPlugin({
   isRichText: boolean;
 }): JSX.Element {
   const [editor] = useLexicalComposerContext();
-  const [isEditable, setIsEditable] = useState(() => editor.isEditable());
+  // const [isEditable, setIsEditable] = useState(() => editor.isEditable());
   const [isSpeechToText, setIsSpeechToText] = useState(false);
-  const [connected, setConnected] = useState(false);
+  // const [connected, setConnected] = useState(false);
   const [isEditorEmpty, setIsEditorEmpty] = useState(true);
   const [modal, showModal] = useModal();
-  const {isCollabActive} = useCollaborationContext();
+  // const {isCollabActive} = useCollaborationContext();
 
-  useEffect(() => {
-    return mergeRegister(
-      editor.registerEditableListener((editable) => {
-        setIsEditable(editable);
-      }),
-      editor.registerCommand<boolean>(
-        CONNECTED_COMMAND,
-        (payload) => {
-          const isConnected = payload;
-          setConnected(isConnected);
-          return false;
-        },
-        COMMAND_PRIORITY_EDITOR,
-      ),
-    );
-  }, [editor]);
+  // useEffect(() => {
+  //   return mergeRegister(
+  //     editor.registerEditableListener((editable) => {
+  //       setIsEditable(editable);
+  //     }),
+  //     editor.registerCommand<boolean>(
+  //       CONNECTED_COMMAND,
+  //       (payload) => {
+  //         const isConnected = payload;
+  //         setConnected(isConnected);
+  //         return false;
+  //       },
+  //       COMMAND_PRIORITY_EDITOR,
+  //     ),
+  //   );
+  // }, [editor]);
 
   useEffect(() => {
     return editor.registerUpdateListener(
       ({dirtyElements, prevEditorState, tags}) => {
         // If we are in read only mode, send the editor state
         // to server and ask for validation if possible.
-        if (
-          !isEditable &&
-          dirtyElements.size > 0 &&
-          !tags.has('historic') &&
-          !tags.has('collaboration')
-        ) {
-          validateEditorState(editor);
-        }
+        // if (
+        //   !isEditable &&
+        //   dirtyElements.size > 0 &&
+        //   !tags.has('historic') &&
+        //   !tags.has('collaboration')
+        // ) {
+        //   validateEditorState(editor);
+        // }
         editor.getEditorState().read(() => {
           const root = $getRoot();
           const children = root.getChildren();
@@ -134,7 +134,8 @@ export default function ActionsPlugin({
         });
       },
     );
-  }, [editor, isEditable]);
+  }, [editor]);
+  // }, [editor, isEditable]);
 
   const handleMarkdownToggle = useCallback(() => {
     editor.update(() => {
@@ -156,6 +157,7 @@ export default function ActionsPlugin({
       root.selectEnd();
     });
   }, [editor]);
+
 
   return (
     <div className="actions">
@@ -207,7 +209,7 @@ export default function ActionsPlugin({
         aria-label="Clear editor contents">
         <i className="clear" />
       </button>
-      <button
+      {/* <button
         className={`action-button ${!isEditable ? 'unlock' : 'lock'}`}
         onClick={() => {
           // Send latest editor state to commenting validation server
@@ -219,7 +221,7 @@ export default function ActionsPlugin({
         title="Read-Only Mode"
         aria-label={`${!isEditable ? 'Unlock' : 'Lock'} read-only mode`}>
         <i className={!isEditable ? 'unlock' : 'lock'} />
-      </button>
+      </button> */}
       <button
         className="action-button"
         onClick={handleMarkdownToggle}
@@ -227,7 +229,7 @@ export default function ActionsPlugin({
         aria-label="Convert from markdown">
         <i className="markdown" />
       </button>
-      {isCollabActive && (
+      {/* {isCollabActive && (
         <button
           className="action-button connect"
           onClick={() => {
@@ -241,7 +243,7 @@ export default function ActionsPlugin({
           } a collaborative editing server`}>
           <i className={connected ? 'disconnect' : 'connect'} />
         </button>
-      )}
+      )} */}
       {modal}
     </div>
   );

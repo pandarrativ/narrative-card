@@ -1,3 +1,4 @@
+/* overall layout settings */
 #word-editor{
     background-color: white;
     height:100%;
@@ -8,10 +9,6 @@
 
 .editor-container-outer{
     height: 100%;
-}
-
-.testing:hover{
-    background-color: red;
 }
 
 /* fix the problem of list/unordered list */
@@ -38,6 +35,7 @@
 }
 
 
+/* full toolbar settings*/
 
 /* .editor-inner{
     border-top: 1px solid rgba(0, 0, 0, 0.16);
@@ -70,17 +68,14 @@
 
 
 /* toobar */
-/* .toolbar{
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    padding: 1rem 0.5rem 0.5rem 0.5rem ;
+.toolbar{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.16);
 }
 
-.editor-toolbar-divider{
+.divider{
     border-left: 1px solid rgba(0, 0, 0, 0.16);
 }
-.toolbar-item{
+/* .toolbar-item{
     height: 1.75rem;
     width: 1.75rem;
     display: flex;
