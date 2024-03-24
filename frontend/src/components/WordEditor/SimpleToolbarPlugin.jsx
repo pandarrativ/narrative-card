@@ -12,7 +12,6 @@ import {
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
-  applyNodeReplacement,
 } from 'lexical';
 import {useCallback, useEffect, useRef, useState} from 'react';
 import * as React from 'react';
@@ -93,7 +92,6 @@ export default function SimpleToolbarPlugin() {
     const handleFontSize = (headingTagType) => {
         editor.update(() => {
             const selection = $getSelection();
-            console.log(selection)
             if ($isRangeSelection(selection)) {
                 $setBlocksType(selection, () => $createHeadingNode(headingTagType));
             }

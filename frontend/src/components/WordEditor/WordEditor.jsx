@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import "./word-editor.css";
 import "./index.css";
 import {useSettings} from './context/SettingsContext';
@@ -36,7 +36,7 @@ import PageBreakPlugin from './plugins/PageBreakPlugin';
 import {LayoutPlugin} from './plugins/LayoutPlugin/LayoutPlugin';
 import DraggableBlockPlugin from './plugins/DraggableBlockPlugin';
 import CodeActionMenuPlugin from './plugins/CodeActionMenuPlugin';
-import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin';
+// import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin';
 import TableCellActionMenuPlugin from './plugins/TableActionMenuPlugin';
 import FloatingTextFormatToolbarPlugin from './plugins/FloatingTextFormatToolbarPlugin';
 import {ClearEditorPlugin} from '@lexical/react/LexicalClearEditorPlugin';
@@ -49,8 +49,11 @@ import KeywordsPlugin from './plugins/KeywordsPlugin';
 import SpeechToTextPlugin from './plugins/SpeechToTextPlugin';
 import AutoLinkPlugin from './plugins/AutoLinkPlugin';
 import TreeViewPlugin from './plugins/TreeViewPlugin';
+import DragDropPaste from './plugins/DragDropPastePlugin';
 
 import {CAN_USE_DOM} from './shared/canUseDOM';
+
+// const ImagesPlugin = React.lazy(() => import('./plugins/ImagesPlugin'));
 
 const PlaceHolder = () => {
     return (
@@ -62,19 +65,8 @@ const PlaceHolder = () => {
 function WordEditor() {
     const {
         settings: {
-            isCollab,
-            isAutocomplete,
-            isMaxLength,
-            isCharLimit,
-            isCharLimitUtf8,
-            isRichText,
-            showTreeView,
-            showTableOfContents,
-            shouldUseLexicalContextMenu,
             tableCellMerge,
             tableCellBackgroundColor, 
-            emptyEditor, 
-            measureTypingPerf,
             },
         } = useSettings();
     const initialConfig = {
@@ -89,7 +81,7 @@ function WordEditor() {
 
     const [floatingAnchorElem, setFloatingAnchorElem] = useState(null);
     const [isSmallWidthViewport, setIsSmallWidthViewport] = useState(false);
-    const [isLinkEditMode, setIsLinkEditMode] = useState(false);
+    // const [isLinkEditMode, setIsLinkEditMode] = useState(false);
     const onRef = (_floatingAnchorElem) => {
         if (_floatingAnchorElem !== null) {
         setFloatingAnchorElem(_floatingAnchorElem);
@@ -114,17 +106,18 @@ function WordEditor() {
         return () => {
             window.removeEventListener('resize', updateViewPortWidth);
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSmallWidthViewport]);
     
 
     return (
         <div id="word-editor">
             <LexicalComposer initialConfig={initialConfig}>
+            <DragDropPaste />
             <AutoFocusPlugin />
             <ClearEditorPlugin />
             <EmojiPickerPlugin />
             <AutoEmbedPlugin />
-
             <MentionsPlugin />
             <EmojisPlugin />
             <HashtagPlugin />
@@ -138,15 +131,15 @@ function WordEditor() {
                 <ToolbarPlugin />
                 <div className="editor-container">
                     <RichTextPlugin
-                    contentEditable={
-                        <div className="editor-scroller">
-                        <div className="editor" ref={onRef}>
-                            <ContentEditable className="ContentEditable__root"/>
-                        </div>
-                        </div>
-                    }
-                    placeholder={<PlaceHolder></PlaceHolder>}
-                    ErrorBoundary={LexicalErrorBoundary}
+                        contentEditable={
+                            <div className="editor-scroller">
+                            <div className="editor" ref={onRef}>
+                                <ContentEditable className="ContentEditable__root"/>
+                            </div>
+                            </div>
+                        }
+                        placeholder={<PlaceHolder></PlaceHolder>}
+                        ErrorBoundary={LexicalErrorBoundary}
                     />
                     <MarkdownShortcutPlugin />
                     <CodeHighlightPlugin />
@@ -158,6 +151,9 @@ function WordEditor() {
                         hasCellBackgroundColor={tableCellBackgroundColor}
                     />
                     <TableCellResizer />
+                    {/* <Suspense fallback={<div>Loading...</div>}>
+                        <ImagesPlugin />
+                    </Suspense> */}
                     <ImagesPlugin />
                     <InlineImagePlugin />
                     <LinkPlugin />
@@ -191,15 +187,6 @@ function WordEditor() {
                             />
                         </>
                         )}
-                    {/* {(isCharLimit || isCharLimitUtf8) && (
-                    <CharacterLimitPlugin
-                        charset={isCharLimit ? 'UTF-16' : 'UTF-8'}
-                        maxLength={5}
-                    />
-                    )} */}
-
-
-        
                     <TreeViewPlugin />
                 </div>
             </div>
