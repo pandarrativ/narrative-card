@@ -19,6 +19,10 @@
   src: url('./assets/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf') format('woff2'),
 }
 
+@font-face {
+  font-family: "Monofett";
+  src: url("./assets/fonts/Monofett/Monofett-Regular.ttf") format('ttf');
+}
 
 
 /*****************************************************/
@@ -33,9 +37,6 @@
 
   
 }
-
-
-
 
 
 /*****************************************************/
@@ -70,9 +71,56 @@
 .btn-next-img{
   background-image: url("./assets/icons/btn-next.svg");
 }
+.btn-white-1{
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 0.5rem 2rem;
+  color: #755349;
+}
+.btn-white-1:hover{
+  background-image: linear-gradient(to left, #f8f9fa, #e9ecef, #f8f9fa); /* bg-gray-1*/
+  cursor: pointer;
+}
 
 
+/* textarea */
+.gray-text-area{
+  background-color: #adb5bd;  /* bg-gray-4*/
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  resize: none;
+  outline: none;
+}
+.gray-text-area::placeholder {
+  color: #495057;  /* bg-gray-6*/
+}
 
+
+/* animation */
+.fade-out {
+  animation: fadeOut 1s forwards; 
+}
+.fade-in {
+  animation: fadeIn 1s forwards; 
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 
 
