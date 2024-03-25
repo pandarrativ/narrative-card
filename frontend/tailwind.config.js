@@ -14,6 +14,7 @@ module.exports = {
       fontFamily:{
         "title": ['Kodchasan', "Calibri", "Arial", " Helvetica", 'sans-serif'],
         "content": ["MavenPro", "Calibri","Arial", " Helvetica",'sans-serif'],
+        "monofett": ["Monofett"],
       },
       fontSize: {
         'h0': '4.5rem', 
@@ -25,9 +26,18 @@ module.exports = {
         "small1":"0.875rem",
         'hint': '0.75rem',
       },
-      // for more colors, refers to: https://yeun.github.io/open-color/
-      // here I pick the 2, 4, 5, 6, 7, 8 ,9, 10
       colors:{  
+        "narrativeColor":{
+          1: '##F1F1F1',
+          2: '#C1AEA8',
+          3: '#AD918A',
+          4: '#88685E',
+          5: '#755349',
+          6: '#3A1E16',
+          7: '#3C1C12',
+          8: '#2B140D',
+          9: '#110400',
+        },
         "gray": {
           1: "#f1f3f5",
           2: "#dee2e6",
