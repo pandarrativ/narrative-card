@@ -6,7 +6,6 @@ import SimpleEditor from "../../components/WordEditor/SimpleEditor";
 import WoodPanel from "../../components/WoodPanel/WoodPanel";
 import bgStoryMain from "../../assets/imgs/bg-card-main.png";
 import bgEditorBoard from "../../assets/imgs/card-text-board.png";
-import bgCardCarousel from "../../assets/imgs/bg-card-carousel.png";
 import CardSegmentWoodPanel from "../../components/CardSegmentWoodPanel/CardSegmentWoodPanel";
 import SlidingCarousel from "../../components/SlidingCarousel/SlidingCarousel";
 
@@ -17,6 +16,9 @@ function CardCreationMainPage() {
     const [showPanel, setShowPanel] = useState(true);
     const [showSegmentModal, setShowSegmentModal] = useState(false);
     const [showmModalBGCover, setShowModalBGCover] = useState(false);
+    const [showSegmentCarousel, setShowSegmentCarousel] = useState(false);
+
+
     const goLastStep = () => {
         switch (workingTask) {
             case "STORY":
@@ -30,6 +32,9 @@ function CardCreationMainPage() {
             case "IMAGE_GENERATION":
                 setWorkingTask("STORY_SEGMENTATION");
                 setShift(shift-1);
+                setTimeout(() => {
+                    setShowSegmentCarousel(false);
+                }, 500);
                 break;
             default:
                 alert("Error")
@@ -58,6 +63,9 @@ function CardCreationMainPage() {
             case "STORY_SEGMENTATION":
                 setWorkingTask("IMAGE_GENERATION");
                 setShift(shift+1);
+                setTimeout(() => {
+                    setShowSegmentCarousel(true);
+                }, 500);
                 break;
             case "IMAGE_GENERATION":
                 navigate("/card/creation-review");
@@ -114,19 +122,20 @@ function CardCreationMainPage() {
     // 3.Segments
     const renderStorySegmentComponent = () => {
         return (
-            shift === 2 ?
+            showSegmentCarousel ?
             (
-                <div className="card-segment py-4 px-8 h-full flex flex-col gap-2">
+                <div className={`card-segment py-4 px-8 h-full flex flex-col gap-2 ${shift === 2 ? "fade-enter-active fade-exit": "fade-exit-activate fade-enter"}`}>
                     <div className="h-full w-full flex flex-col gap-2 px-4 py-4 story-segment-gradient shadow-card rounded-lg">
                         <div className="w-full h-3/6">
                             <SlidingCarousel></SlidingCarousel>
                         </div>
-                        <textarea className="w-full h-3/6 resize-none rounded-lg outline-none p-4" placeholder="Pick a card to show the story..."/>
+                        <div className="story-board-color font-monofett text-h4">Segment Story</div>
+                        <textarea className="w-full h-3/6 resize-none rounded-lg outline-none p-4 shadow-card" placeholder="Pick a card to show the story..."/>
                     </div>
                 </div>
             ):
             (
-                <div className="card-segment py-4 px-8 h-full flex flex-col gap-2">
+                <div className={`card-segment py-4 px-8 h-full flex flex-col gap-2 ${shift === 2 ? "fade-exit-activate fade-enter" : "fade-exit fade-enter-active"}`}>
                     <div className="h-full w-full flex flex-col gap-2 story-segment-gradient shadow-card rounded-lg px-4 py-4">
                         <div className="flex flex-row justify-between w-full items-center">
                             <div className="story-board-color font-monofett text-h2 w-5/6 text-left">STORY SEGMENTS</div>

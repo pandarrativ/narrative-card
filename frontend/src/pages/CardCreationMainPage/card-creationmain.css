@@ -151,3 +151,25 @@
 .card-segment-wood-up{
     transform: translateY(0);
 }
+
+/***************************** image  generation ***************************/
+.fade-enter {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+  }
+  
+  .fade-exit-active {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+  
