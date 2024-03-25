@@ -1,9 +1,12 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./card-creationmain.css"
+import "./card-creationmain.css";
 import MessageBlock from "../../components/MessageBlock/MessageBlock";
 import SimpleEditor from "../../components/WordEditor/SimpleEditor";
 import WoodPanel from "../../components/WoodPanel/WoodPanel";
+import bgStoryMain from "../../assets/imgs/bg-card-main.png";
+import CardMessageBlock from "../../components/CardMessageBlock/CardMessageBlock";
+import bgEditorBoard from "../../assets/imgs/card-text-board.png";
 
 function CardCreationMainPage() {
     const navigate = useNavigate();
@@ -80,13 +83,12 @@ function CardCreationMainPage() {
     const renderStoryConversationComponent = () => {
         return (
             <>
-                <div className="card-conversation py-4 px-8 h-full flex flex-col">
-                    <div className="flex flex-row w-full mx-auto justify-end"><button className="btn btn-neutral">Add</button></div>
-                    <div className="flex flex-col gap-4 p-8 bg-white w-full mx-auto overflow-auto">
-                        <MessageBlock/>
-                        <MessageBlock/>
-                        <MessageBlock/>
-                        <MessageBlock/>
+                <div className="card-conversation py-4 px-8 h-full flex flex-col gap-2">
+                    <div className="flex flex-row w-full mx-auto justify-end"><button className="btn-white-2 shadow-card font-monofett text-h3">Add</button></div>
+                    <div className="flex flex-col flex-grow gap-4 px-8 py-4 rounded-lg shadow-card bg-white w-full mx-auto overflow-auto story-message-block-gradient">
+                        <CardMessageBlock/>
+                        {/* <CardMessageBlock/>
+                        <CardMessageBlock/> */}
                         <div ref={conversationBottomRef}></div>
                     </div>
                 </div>
@@ -113,15 +115,22 @@ function CardCreationMainPage() {
     const renderStoryComponent = () => {
         return (
             <div className="card-story py-4 px-8 h-full w-full">
-                <SimpleEditor></SimpleEditor>
+                <div className="flex flex-col gap-2 py-4 items-center justify-between w-full h-full relative">
+                    <img src={bgEditorBoard} alt="a wood board" className="absolute h-full w-full z-[-10]"></img>
+
+                    <div className="story-board-color font-monofett text-h2 w-5/6 text-left">STORY EDITOR</div>
+                    <div className="w-5/6 flex-grow">
+                        <SimpleEditor></SimpleEditor>
+                    </div>
+                </div>
             </div>
         )
     }
     const renderStorySegmentComponent = () => {
         return (
             <div className="card-conversation py-4 px-8 h-full flex flex-col">
-                <div className="flex flex-row  w-full mx-auto justify-end"><button className="btn btn-neutral">Add</button></div>
-                <div className="flex flex-col gap-4 p-8 bg-white w-full mx-auto overflow-auto">
+                <div className="flex flex-row  w-full mx-auto justify-end"><button className="btn-white-2 font-monofett text-h3">Add</button></div>
+                <div className="flex flex-col gap-4 px-8 py-4 bg-white w-full mx-auto overflow-auto story-message-block-gradient">
                     <MessageBlock/>
                     <MessageBlock/>
                     <MessageBlock/>
@@ -143,7 +152,11 @@ function CardCreationMainPage() {
 
 
     return ( 
-        <div className="card-creation-main h-screen flex flex-col py-4 gap-4">
+        <div className="card-creation-main h-screen flex flex-col pt-16 pb-8 gap-4 relative">
+            <div className="absolute h-screen w-screen left-0 top-0 z-[-100] center-full-height-img-box">
+                <img src={bgStoryMain} alt="a desktop background" className="center-full-height-box-img"></img>
+            </div>
+
             {/* <div className="creation-main-body flex flex-row" style={{transform: `translateX(-${shift * 25}%)`}}> */}
             <div className="creation-main-body flex flex-row" style={{transform: `translateX(-${widthTransformMap(shift)}%)`}}>
                 <div className="creation-body-part h-full">
@@ -166,8 +179,8 @@ function CardCreationMainPage() {
             </div>
 
             <div className="flex flex-row justify-between h-12 px-4">
-                <button className="btn" onClick={goLastStep}>Last Step</button>
-                <button className="btn" onClick={goNextStep}>Next Step</button>
+                <button className="btn-white-2 font-monofett text-h3 shadow-card" onClick={goLastStep}>PREV</button>
+                <button className="btn-white-2 font-monofett text-h3 shadow-card" onClick={goNextStep}>NEXT</button>
             </div>
             
             {renderWoodPanel()}

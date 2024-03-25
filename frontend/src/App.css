@@ -58,6 +58,21 @@
     object-fit: cover;
 }
 
+/* Make an img takes full height and at placed at the center. Hidden things on left/right margins that does not fit the container */
+.center-full-height-img-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+}
+
+.center-full-height-box-img {
+  height: 100%;
+  min-width: 100%;
+  object-fit: cover; 
+}
+
+
 
 .gradient-btn{
   background-image: radial-gradient(ellipse at center, #fbe5ff, #f3c4fb);
@@ -71,6 +86,7 @@
 .btn-next-img{
   background-image: url("./assets/icons/btn-next.svg");
 }
+
 .btn-white-1{
   background-color: #fff;
   border-radius: 16px;
@@ -78,6 +94,18 @@
   color: #755349;
 }
 .btn-white-1:hover{
+  background-image: linear-gradient(to left, #f8f9fa, #e9ecef, #f8f9fa); /* bg-gray-1*/
+  cursor: pointer;
+}
+
+
+.btn-white-2{
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 0 2rem;
+  color: #755349;
+}
+.btn-white-2:hover{
   background-image: linear-gradient(to left, #f8f9fa, #e9ecef, #f8f9fa); /* bg-gray-1*/
   cursor: pointer;
 }
@@ -93,6 +121,15 @@
 }
 .gray-text-area::placeholder {
   color: #495057;  /* bg-gray-6*/
+}
+
+
+/* box shadow */
+.shadow-paper{
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.shadow-card{
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 

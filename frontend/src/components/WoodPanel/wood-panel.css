@@ -35,8 +35,16 @@
     z-index: 4;
     width: 56px;
     height: 56px;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
+.wood-panel-mouse>img{
+    width: 36px;
+    height: 36px;
+}
 
 
 .wood-panel-body{

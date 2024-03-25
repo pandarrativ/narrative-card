@@ -1,4 +1,3 @@
-/* set page left/right shit */
 .card-creation-main{
     overflow: hidden;
 }
@@ -10,16 +9,10 @@
 }
 
 
-/* .creation-body-part{
-    width: 25%;
-    height: 100%;
-    background-color: cyan;
-    border: 2px #000 solid;
-} */
+/* set page left/right shit */
 .creation-body-part{
     height: 100%;
-    background-color: #f1f3f5;
-    border: 2px #000 solid;
+    /* border: 2px #000 solid; */
 }
 .creation-body-part:first-child,
 .creation-body-part:nth-child(3){
@@ -30,3 +23,17 @@
     width: 30%;
 }
 
+
+/* story part */
+.story-message-block-gradient{
+    background-image: linear-gradient(120deg, #ffe8be, #faffbd, #ffdcf2); 
+}
+
+.story-message-gradient{
+    background-image: linear-gradient(120deg, #ffdcf2, #faffbc, #ffdcf2); 
+}
+
+/* conversation part */
+.story-board-color{
+    color: #755349;
+}
