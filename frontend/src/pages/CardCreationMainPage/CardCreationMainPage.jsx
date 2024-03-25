@@ -6,7 +6,9 @@ import SimpleEditor from "../../components/WordEditor/SimpleEditor";
 import WoodPanel from "../../components/WoodPanel/WoodPanel";
 import bgStoryMain from "../../assets/imgs/bg-card-main.png";
 import bgEditorBoard from "../../assets/imgs/card-text-board.png";
+import bgCardCarousel from "../../assets/imgs/bg-card-carousel.png";
 import CardSegmentWoodPanel from "../../components/CardSegmentWoodPanel/CardSegmentWoodPanel";
+import SlidingCarousel from "../../components/SlidingCarousel/SlidingCarousel";
 
 function CardCreationMainPage() {
     const navigate = useNavigate();
@@ -112,31 +114,44 @@ function CardCreationMainPage() {
     // 3.Segments
     const renderStorySegmentComponent = () => {
         return (
-            <div className="card-segment py-4 px-8 h-full flex flex-col gap-2">
-                <div className="h-full w-full flex flex-col gap-2 story-segment-gradient shadow-card rounded-lg px-4 py-4">
-                    <div className="flex flex-row justify-between w-full items-center">
-                        <div className="story-board-color font-monofett text-h2 w-5/6 text-left">STORY SEGMENTS</div>
-                        <button 
-                            className="btn-white-2 h-8 shadow-card font-monofett text-h5 whitespace-nowrap" 
-                            onClick={() =>{
-                                setShowSegmentModal(true);
-                                setShowModalBGCover(true);
-                            }}
-                        >AI-Segmentation</button>
-                    </div>
-                    <div className="card-segments-block flex flex-row flex-grow gap-4 w-full mx-auto overflow-auto pb-4 pt-1 px-1">
-                        <MessageBlock openPrompt={true}/>
-                        <MessageBlock openPrompt={true}/>
-                        <MessageBlock openPrompt={true}/>
-                        <MessageBlock openPrompt={true}/>
-                        <MessageBlock openPrompt={true}/>
-                        <MessageBlock openPrompt={true}/>
-                        <MessageBlock openPrompt={true}/>
-
-                        <div ref={storySegmentBottomRef}></div>
+            shift === 2 ?
+            (
+                <div className="card-segment py-4 px-8 h-full flex flex-col gap-2">
+                    <div className="h-full w-full flex flex-col gap-2 px-4 py-4 story-segment-gradient shadow-card rounded-lg">
+                        <div className="w-full h-3/6">
+                            <SlidingCarousel></SlidingCarousel>
+                        </div>
+                        <textarea className="w-full h-3/6 resize-none rounded-lg outline-none p-4" placeholder="Pick a card to show the story..."/>
                     </div>
                 </div>
-            </div>
+            ):
+            (
+                <div className="card-segment py-4 px-8 h-full flex flex-col gap-2">
+                    <div className="h-full w-full flex flex-col gap-2 story-segment-gradient shadow-card rounded-lg px-4 py-4">
+                        <div className="flex flex-row justify-between w-full items-center">
+                            <div className="story-board-color font-monofett text-h2 w-5/6 text-left">STORY SEGMENTS</div>
+                            <button 
+                                className="btn-white-2 h-8 shadow-card font-monofett text-h5 whitespace-nowrap" 
+                                onClick={() =>{
+                                    setShowSegmentModal(true);
+                                    setShowModalBGCover(true);
+                                }}
+                            >AI-Segmentation</button>
+                        </div>
+                        <div className="card-segments-block flex flex-row flex-grow gap-4 w-full mx-auto overflow-auto pb-4 pt-1 px-1">
+                            <MessageBlock openPrompt={true}/>
+                            <MessageBlock openPrompt={true}/>
+                            <MessageBlock openPrompt={true}/>
+                            <MessageBlock openPrompt={true}/>
+                            <MessageBlock openPrompt={true}/>
+                            <MessageBlock openPrompt={true}/>
+                            <MessageBlock openPrompt={true}/>
+
+                            <div ref={storySegmentBottomRef}></div>
+                        </div>
+                    </div>
+                </div>
+            )
         )
     }
     const renderSegmentModal = () => {
