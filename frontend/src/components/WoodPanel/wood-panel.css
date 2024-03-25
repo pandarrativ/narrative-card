@@ -1,13 +1,3 @@
-#wood-panel-block-conversation{
-    position: fixed;
-    bottom: -320px;
-    /* bottom: 120px; */
-    left: 17vw;
-    width: 66vw;
-    height: 480px;
-    z-index: 10;
-}
-
 .wood-panel-expand {
     margin-top: -300px;
 }

@@ -2,8 +2,8 @@ import { useState } from "react";
 import "./message-block.css";
 import iconAI from "../../assets/icons/ai.svg";
 
-function MessageBlock({title, content, prompt, onTitleChange, onContentChange, onPromptChange, regenerateContent, onDelete}) {
-    const [showPrompt, setShowPrompt] = useState(false);
+function MessageBlock({title, content, prompt, onTitleChange, onContentChange, onPromptChange, regenerateContent, onDelete, openPrompt}) {
+    const [showPrompt, setShowPrompt] = useState(openPrompt === undefined ? false: openPrompt);
 
     return ( 
         <div className="message-block flex flex-col gap-0">
@@ -16,7 +16,7 @@ function MessageBlock({title, content, prompt, onTitleChange, onContentChange, o
                 </button>
             </div>
             <textarea 
-                className="textarea-message-block text-small1 min-h-24" 
+                className="textarea-message-block text-small1 mblock-content-prompt min-h-24" 
                 placeholder="Content Description" 
                 value={content} 
                 onChange={onContentChange}

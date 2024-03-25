@@ -6,12 +6,15 @@ import SimpleEditor from "../../components/WordEditor/SimpleEditor";
 import WoodPanel from "../../components/WoodPanel/WoodPanel";
 import bgStoryMain from "../../assets/imgs/bg-card-main.png";
 import bgEditorBoard from "../../assets/imgs/card-text-board.png";
+import CardSegmentWoodPanel from "../../components/CardSegmentWoodPanel/CardSegmentWoodPanel";
 
 function CardCreationMainPage() {
     const navigate = useNavigate();
     const [workingTask, setWorkingTask] = useState("STORY") // STORY -> STORY_SEGMENTATION -> IMAGE_GENERATION 
     const [shift, setShift] = useState(0); 
     const [showPanel, setShowPanel] = useState(true);
+    const [showSegmentModal, setShowSegmentModal] = useState(false);
+    const [showmModalBGCover, setShowModalBGCover] = useState(false);
     const goLastStep = () => {
         switch (workingTask) {
             case "STORY":
@@ -21,9 +24,6 @@ function CardCreationMainPage() {
                 setWorkingTask("STORY");
                 setShift(shift-1);
                 setShowPanel(true)
-                // setTimeout(() => {
-                //     setShowPanel(true);
-                // }, 1000);
                 break;
             case "IMAGE_GENERATION":
                 setWorkingTask("STORY_SEGMENTATION");
@@ -65,25 +65,13 @@ function CardCreationMainPage() {
         }
     }
     
-    const widthTransformMap = (shift) => {
-        if(shift === 0){
-            return 0;
-        }else if(shift === 1){
-            return 20;
-        }else if(shift === 2){
-            return 50;
-        }else if(shift === 3){
-            return 70;
-        }
-    } 
 
-
-    // Page compoennt code go here
+    // 1. Conversation
     const renderStoryConversationComponent = () => {
         return (
             <div className="card-conversation py-4 px-8 h-full flex flex-col gap-2">
                 <div className="flex flex-row w-full mx-auto justify-end"><button className="btn-white-2 shadow-card font-monofett text-h3">Add</button></div>
-                <div className="flex flex-col flex-grow gap-4 px-8 py-4 rounded-lg shadow-card bg-white w-full mx-auto overflow-auto story-message-block-gradient">
+                <div className="flex flex-col flex-grow gap-4 px-8 py-4 rounded-lg shadow-card w-full mx-auto overflow-auto story-message-block-gradient">
                     <MessageBlock/>
 
                     <div ref={conversationBottomRef}></div>
@@ -91,7 +79,6 @@ function CardCreationMainPage() {
             </div>
         )
     }
-
     const renderWoodPanel = () => {
         return (
             showPanel? (
@@ -106,13 +93,12 @@ function CardCreationMainPage() {
         );
     }
 
-
+    // 2.Story
     const renderStoryComponent = () => {
         return (
             <div className="card-story py-4 px-8 h-full w-full">
                 <div className="flex flex-col gap-2 py-4 items-center justify-between w-full h-full relative">
-                    <img src={bgEditorBoard} alt="a wood board" className="absolute h-full w-full z-[-10] shadow-thik rounded-md"></img>
-
+                    <img src={bgEditorBoard} alt="a wood board" className="absolute h-full top-0 w-full z-[-10] shadow-thik rounded-md"></img>
                     <div className="story-board-color font-monofett text-h2 w-5/6 text-left">STORY EDITOR</div>
                     <div className="w-5/6 flex-grow shadow-card rounded-lg">
                         <SimpleEditor></SimpleEditor>
@@ -121,18 +107,58 @@ function CardCreationMainPage() {
             </div>
         )
     }
+
+
+    // 3.Segments
     const renderStorySegmentComponent = () => {
         return (
             <div className="card-segment py-4 px-8 h-full flex flex-col gap-2">
-                <div className="flex flex-row w-full mx-auto justify-end"><button className="btn-white-2 shadow-card font-monofett text-h3">Add</button></div>
-                <div className="flex flex-col flex-grow gap-4 px-8 py-4 rounded-lg shadow-card bg-white w-full mx-auto overflow-auto story-message-block-gradient">
-                    <MessageBlock/>
+                <div className="h-full w-full flex flex-col gap-2 story-segment-gradient shadow-card rounded-lg px-4 py-4">
+                    <div className="flex flex-row justify-between w-full items-center">
+                        <div className="story-board-color font-monofett text-h2 w-5/6 text-left">STORY SEGMENTS</div>
+                        <button 
+                            className="btn-white-2 h-8 shadow-card font-monofett text-h5 whitespace-nowrap" 
+                            onClick={() =>{
+                                setShowSegmentModal(true);
+                                setShowModalBGCover(true);
+                            }}
+                        >AI-Segmentation</button>
+                    </div>
+                    <div className="card-segments-block flex flex-row flex-grow gap-4 w-full mx-auto overflow-auto pb-4 pt-1 px-1">
+                        <MessageBlock openPrompt={true}/>
+                        <MessageBlock openPrompt={true}/>
+                        <MessageBlock openPrompt={true}/>
+                        <MessageBlock openPrompt={true}/>
+                        <MessageBlock openPrompt={true}/>
+                        <MessageBlock openPrompt={true}/>
+                        <MessageBlock openPrompt={true}/>
 
-                    <div ref={conversationBottomRef}></div>
+                        <div ref={storySegmentBottomRef}></div>
+                    </div>
                 </div>
             </div>
         )
     }
+    const renderSegmentModal = () => {
+        return (
+            shift === 1 &&
+            (<div id="wood-panel-block-segment" className={`card-segment-wood ${showSegmentModal && 'card-segment-wood-up'}`}>
+                <CardSegmentWoodPanel 
+                    onClose={() => {
+                        setShowSegmentModal(false);
+                        setTimeout(() => {
+                            setShowModalBGCover(false);
+                        }, 1000);
+                    }}
+                ></CardSegmentWoodPanel>
+            </div>
+            ) 
+        );
+    }
+
+
+
+    // 4.ImageGeneration
     const renderImageGenerationComponent = () => {
         return (
             <>
@@ -150,21 +176,20 @@ function CardCreationMainPage() {
                 <img src={bgStoryMain} alt="a desktop background" className="center-full-height-box-img"></img>
             </div>
 
-            {/* <div className="creation-main-body flex flex-row" style={{transform: `translateX(-${shift * 25}%)`}}> */}
-            <div className="creation-main-body flex flex-row" style={{transform: `translateX(-${widthTransformMap(shift)}%)`}}>
-                <div className="creation-body-part h-full">
+            <div className="creation-main-body flex flex-row" style={{transform: `translateX(-${shift * 25}%)`}}>
+                <div className={`creation-body-part h-full ${shift === 0 ? 'card-left-part': ''}`}>
                     {renderStoryConversationComponent()}
                 </div>
 
-                <div className="creation-body-part h-full">
+                <div className={`creation-body-part h-full ${shift === 0 ? 'card-right-part': ''} ${shift === 1 ? 'card-left-part': ''}`}>
                     {renderStoryComponent()}
                 </div>
 
-                <div className="creation-body-part h-full">
+                <div className={`creation-body-part h-full ${shift === 1 ? 'card-right-part': ''} ${shift === 2 ? 'card-left-part': ''}`}>
                     {renderStorySegmentComponent()}
                 </div>
 
-                <div className="creation-body-part h-full">
+                <div className={`creation-body-part h-full ${shift === 2 ? 'card-left-part': ''}`}>
                     {renderImageGenerationComponent()}
                 </div>
 
@@ -177,6 +202,8 @@ function CardCreationMainPage() {
             </div>
             
             {renderWoodPanel()}
+            {renderSegmentModal()}
+            {showmModalBGCover && <div className="bg-modal-cover"></div>}
         </div>
      );
 }
