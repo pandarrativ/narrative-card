@@ -3,7 +3,7 @@ import "./wood-panel.css"
 import iconWoodPanel from "./imgs/woodpanel.png";
 import iconMouse from "./imgs/mouse.svg";
 
-function WoodPanel() {
+function WoodPanel({value, onValueChange, onClickSend, }) {
     const [isExpand, setIsExpand] = useState(false);
 
     return ( 
@@ -13,9 +13,8 @@ function WoodPanel() {
                 <img src={iconMouse} alt="a mouse to click"></img>
             </button>
             <div className="wood-panel-body flex flex-col justify-between items-center">
-                <textarea className="gray-text-area h-64 w-full" placeholder="Enter your prompt... "></textarea>
-                {/* <button className="btn-white-1 font-content flex flex-row gap-1"><WoodFont text="CONTINUE"/></button> */}
-                <button className="btn-white-1 font-monofett text-h3 flex flex-row gap-1">CONTINUE</button>
+                <textarea className="gray-text-area h-64 w-full" placeholder="Enter your prompt... " value={value} onChange={(e) => onValueChange(e.target.value)}></textarea>
+                <button className="btn-white-1 font-monofett text-h3 flex flex-row gap-1" onClick={onClickSend}>CONTINUE</button>
             </div>
         </div>
      );

@@ -1,3 +1,16 @@
+#wood-panel-block-conversation{
+    position: fixed;
+    bottom: -320px;
+    /* bottom: 120px; */
+    left: 17vw;
+    width: 66vw;
+    height: 480px;
+    z-index: 10;
+}
+
+.wood-panel-expand {
+    margin-top: -300px;
+}
 .wood-panel{
     height: 100%;
     width: 100%;
@@ -53,4 +66,29 @@
 
 .wood-panel-expand .wood-panel-body>textarea{
     height: 256px;
+}
+
+
+/* animation */
+.wood-slide-up {
+    animation: slideUp 1s ease-out forwards;  
+}
+.wood-slide-down {
+    animation: slideDown 1s ease-out forwards;  
+}
+@keyframes slideUp {
+    from {
+        transform: translateY(300px);  
+    }
+    to {
+        transform: translateY(0);
+    }
+    }
+    @keyframes slideDown {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(300px); 
+    }
 }
