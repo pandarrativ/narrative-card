@@ -111,6 +111,7 @@
 }
 
 
+
 /* textarea */
 .gray-text-area{
   background-color: #adb5bd;  /* bg-gray-4*/
@@ -170,8 +171,6 @@
 /***********************************************************/
 .btn-bubble-1{
   border-radius: 16px;
-  /* border: 2px solid #c18247; */
-  /* border-color: #c18247; */
   background-image: linear-gradient(120deg, #f2e78c, #f5eed5, #c9c2b2);
 
   position: relative;
