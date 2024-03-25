@@ -35,7 +35,7 @@ function SlidingCarousel() {
                 let style = calculateStyle(i);
                 return (
                     <div 
-                        className="sliding-carousel-card" 
+                        className={`sliding-carousel-card ${i === centerIndex ? "carousel-card-selected": ""}`} 
                         key={i} 
                         style={{left:style.x, top:style.y, zIndex:style.z, width:style.scale, transition:"all 0.5s ease"}}
                         onClick={() => setCenterIndex(i)}
