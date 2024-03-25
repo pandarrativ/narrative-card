@@ -6,7 +6,6 @@ import SimpleEditor from "../../components/WordEditor/SimpleEditor";
 import WoodPanel from "../../components/WoodPanel/WoodPanel";
 import bgStoryMain from "../../assets/imgs/bg-card-main.png";
 import bgEditorBoard from "../../assets/imgs/card-text-board.png";
-import bgCardCarousel from "../../assets/imgs/bg-card-carousel.png";
 import CardSegmentWoodPanel from "../../components/CardSegmentWoodPanel/CardSegmentWoodPanel";
 import SlidingCarousel from "../../components/SlidingCarousel/SlidingCarousel";
 
@@ -121,7 +120,8 @@ function CardCreationMainPage() {
                         <div className="w-full h-3/6">
                             <SlidingCarousel></SlidingCarousel>
                         </div>
-                        <textarea className="w-full h-3/6 resize-none rounded-lg outline-none p-4" placeholder="Pick a card to show the story..."/>
+                        <div className="story-board-color font-monofett text-h4">Segment Story</div>
+                        <textarea className="w-full h-3/6 resize-none rounded-lg outline-none p-4 shadow-card" placeholder="Pick a card to show the story..."/>
                     </div>
                 </div>
             ):
