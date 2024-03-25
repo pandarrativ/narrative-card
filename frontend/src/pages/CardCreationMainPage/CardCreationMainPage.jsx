@@ -5,7 +5,6 @@ import MessageBlock from "../../components/MessageBlock/MessageBlock";
 import SimpleEditor from "../../components/WordEditor/SimpleEditor";
 import WoodPanel from "../../components/WoodPanel/WoodPanel";
 import bgStoryMain from "../../assets/imgs/bg-card-main.png";
-import CardMessageBlock from "../../components/CardMessageBlock/CardMessageBlock";
 import bgEditorBoard from "../../assets/imgs/card-text-board.png";
 
 function CardCreationMainPage() {
@@ -82,18 +81,14 @@ function CardCreationMainPage() {
     // Page compoennt code go here
     const renderStoryConversationComponent = () => {
         return (
-            <>
-                <div className="card-conversation py-4 px-8 h-full flex flex-col gap-2">
-                    <div className="flex flex-row w-full mx-auto justify-end"><button className="btn-white-2 shadow-card font-monofett text-h3">Add</button></div>
-                    <div className="flex flex-col flex-grow gap-4 px-8 py-4 rounded-lg shadow-card bg-white w-full mx-auto overflow-auto story-message-block-gradient">
-                        <CardMessageBlock/>
-                        {/* <CardMessageBlock/>
-                        <CardMessageBlock/> */}
-                        <div ref={conversationBottomRef}></div>
-                    </div>
-                </div>
-            </>
+            <div className="card-conversation py-4 px-8 h-full flex flex-col gap-2">
+                <div className="flex flex-row w-full mx-auto justify-end"><button className="btn-white-2 shadow-card font-monofett text-h3">Add</button></div>
+                <div className="flex flex-col flex-grow gap-4 px-8 py-4 rounded-lg shadow-card bg-white w-full mx-auto overflow-auto story-message-block-gradient">
+                    <MessageBlock/>
 
+                    <div ref={conversationBottomRef}></div>
+                </div>
+            </div>
         )
     }
 
@@ -116,10 +111,10 @@ function CardCreationMainPage() {
         return (
             <div className="card-story py-4 px-8 h-full w-full">
                 <div className="flex flex-col gap-2 py-4 items-center justify-between w-full h-full relative">
-                    <img src={bgEditorBoard} alt="a wood board" className="absolute h-full w-full z-[-10]"></img>
+                    <img src={bgEditorBoard} alt="a wood board" className="absolute h-full w-full z-[-10] shadow-thik rounded-md"></img>
 
                     <div className="story-board-color font-monofett text-h2 w-5/6 text-left">STORY EDITOR</div>
-                    <div className="w-5/6 flex-grow">
+                    <div className="w-5/6 flex-grow shadow-card rounded-lg">
                         <SimpleEditor></SimpleEditor>
                     </div>
                 </div>
@@ -128,13 +123,11 @@ function CardCreationMainPage() {
     }
     const renderStorySegmentComponent = () => {
         return (
-            <div className="card-conversation py-4 px-8 h-full flex flex-col">
-                <div className="flex flex-row  w-full mx-auto justify-end"><button className="btn-white-2 font-monofett text-h3">Add</button></div>
-                <div className="flex flex-col gap-4 px-8 py-4 bg-white w-full mx-auto overflow-auto story-message-block-gradient">
+            <div className="card-segment py-4 px-8 h-full flex flex-col gap-2">
+                <div className="flex flex-row w-full mx-auto justify-end"><button className="btn-white-2 shadow-card font-monofett text-h3">Add</button></div>
+                <div className="flex flex-col flex-grow gap-4 px-8 py-4 rounded-lg shadow-card bg-white w-full mx-auto overflow-auto story-message-block-gradient">
                     <MessageBlock/>
-                    <MessageBlock/>
-                    <MessageBlock/>
-                    <MessageBlock/>
+
                     <div ref={conversationBottomRef}></div>
                 </div>
             </div>
