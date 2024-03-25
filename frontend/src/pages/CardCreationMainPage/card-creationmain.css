@@ -1,25 +1,15 @@
-/* set page left/right shit */
 .card-creation-main{
     overflow: hidden;
 }
-
+/************************** layout *************************/
 .creation-main-body{
     width: 200%;
     height: calc(100% - 64px);
     transition: transform 1s ease;
 }
 
-
-/* .creation-body-part{
-    width: 25%;
-    height: 100%;
-    background-color: cyan;
-    border: 2px #000 solid;
-} */
 .creation-body-part{
     height: 100%;
-    background-color: #f1f3f5;
-    border: 2px #000 solid;
 }
 .creation-body-part:first-child,
 .creation-body-part:nth-child(3){
@@ -30,41 +20,52 @@
     width: 30%;
 }
 
-
-/* wood panel */
-#wood-panel-block-conversation{
-    position: fixed;
-    bottom: -320px;
-    /* bottom: 120px; */
-    left: 17vw;
-    width: 66vw;
-    height: 480px;
-    z-index: 10;
+/************************* conversation part *************************/
+.story-message-block-gradient{
+    background-image: linear-gradient(120deg, #ffe8be, #faffbd, #ffdcf2); 
 }
 
+.story-message-gradient{
+    background-image: linear-gradient(120deg, #ffdcf2, #faffbc, #ffdcf2); 
+}
 
-.wood-panel-expand {
-    margin-top: -300px;
+/* message block */
+.card-conversation .message-block{
+    padding: 0 16px;
+    border: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
-.wood-slide-up {
-    animation: slideUp 1s ease-out forwards;  
+.card-conversation .message-block-header{
+    padding: 8px 0;
 }
-.wood-slide-down {
-    animation: slideDown 1s ease-out forwards;  
+
+.card-conversation .message-block-title{
+    background-color: transparent;
 }
-@keyframes slideUp {
-    from {
-        transform: translateY(300px);  
-    }
-    to {
-        transform: translateY(0);
-    }
-    }
-    @keyframes slideDown {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(300px); 
-    }
+.card-conversation .textarea-message-block{
+    border: none;
+    border-radius: 8px;
+}
+
+.card-conversation .message-prompt{
+    /* border-top: #adb5bd solid 2px; */
+    border-radius: 8px;
+    border: #adb5bd solid 2px;  /*gray 5*/
+    margin-top: 8px;
+}
+
+.card-conversation .message-block-btns{
+    border: none;
+    padding: 8px 0;
+}
+
+
+/************************* story part *************************/
+.story-board-color{
+    color: #755349;
+}
+.card-story #simple-editor,
+.card-story #simple-editor .editor-container,
+.card-story #simple-editor .toolbar {
+    background-color: #fcf7e6;
 }

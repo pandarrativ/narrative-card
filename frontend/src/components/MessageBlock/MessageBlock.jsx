@@ -7,7 +7,7 @@ function MessageBlock({title, content, prompt, onTitleChange, onContentChange, o
 
     return ( 
         <div className="message-block flex flex-col gap-0">
-            <div className="flex flex-row gap-2 w-full py-2 px-4 items-center">
+            <div className="message-block-header flex flex-row gap-2 w-full py-2 px-4 items-center">
                 <input type="text" className="message-block-title font-semibold outline-none" placeholder="Title" value={title} onChange={onTitleChange}/>
                 <button className="message-block-btn" onClick={onDelete}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
