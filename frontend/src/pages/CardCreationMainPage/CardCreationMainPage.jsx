@@ -189,7 +189,25 @@ function CardCreationMainPage() {
             <div className="card-image-generation py-4 px-8 h-full w-full flex flex-col gap-4">
                 <div className="flex flex-col gap-2 p-4 items-center justify-between w-full h-full relative">
                     <img src={bgEditorBoard} alt="a wood board" className="absolute h-full top-0 w-full z-[-10] shadow-thik rounded-md"></img>
-                    <div className="story-board-color w-full font-monofett text-h2 text-left">STORY EDITOR</div>
+                    <div className="w-full flex flex-row justify-between">
+                        <div className="story-board-color w-full font-monofett text-h2 text-left">STORY EDITOR</div>
+                        <label className="form-control w-full max-w-xs">
+                            <div className="label">
+                                <span className="font-title font-semibold">Pick the story segment:</span>
+                            </div>
+                            <select className="select select-bordered">
+                                <option>Card 1</option>
+                                <option>Card 2</option>
+                                <option>Card 3</option>
+                                <option>Card 4</option>
+                                <option>Card 5</option>
+                            </select>
+                        </label>
+                    </div>
+                    
+
+
+
                     <div className="w-full flex-grow rounded-lg shadow-card">
                         <Excalidraw
                             // initialData={{appState: {viewBackgroundColor: "#fcf7e6" }}}
