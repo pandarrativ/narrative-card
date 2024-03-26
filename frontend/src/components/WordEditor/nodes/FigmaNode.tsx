@@ -44,6 +44,7 @@ function FigmaComponent({
       format={format}
       nodeKey={nodeKey}>
       <iframe
+        title='Fimga File'
         width="560"
         height="315"
         src={`https://www.figma.com/embed?embed_host=lexical&url=\
