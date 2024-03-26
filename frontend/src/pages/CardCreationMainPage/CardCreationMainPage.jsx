@@ -8,6 +8,7 @@ import bgStoryMain from "../../assets/imgs/bg-card-main.png";
 import bgEditorBoard from "../../assets/imgs/card-text-board.png";
 import CardSegmentWoodPanel from "../../components/CardSegmentWoodPanel/CardSegmentWoodPanel";
 import SlidingCarousel from "../../components/SlidingCarousel/SlidingCarousel";
+import { Excalidraw, MainMenu } from "@excalidraw/excalidraw";
 
 function CardCreationMainPage() {
     const navigate = useNavigate();
@@ -185,10 +186,31 @@ function CardCreationMainPage() {
     // 4.ImageGeneration
     const renderImageGenerationComponent = () => {
         return (
-            <>
-                Image Generation
-            </>
-        )
+            <div className="card-image-generation py-4 px-8 h-full w-full flex flex-col gap-4">
+                <div className="flex flex-col gap-2 p-4 items-center justify-between w-full h-full relative">
+                    <img src={bgEditorBoard} alt="a wood board" className="absolute h-full top-0 w-full z-[-10] shadow-thik rounded-md"></img>
+                    <div className="story-board-color w-full font-monofett text-h2 text-left">STORY EDITOR</div>
+                    <div className="w-full flex-grow rounded-lg shadow-card">
+                        <Excalidraw
+                            // initialData={{appState: {viewBackgroundColor: "#fcf7e6" }}}
+                            >
+                            <MainMenu>
+                            <MainMenu.Group title="File Operations">
+                                <MainMenu.DefaultItems.LoadScene/>
+                                <MainMenu.DefaultItems.SaveAsImage/>
+                                <MainMenu.DefaultItems.Export/>
+                            </MainMenu.Group>
+                            <MainMenu.Group title="Canvas Operations">
+                                <MainMenu.DefaultItems.ToggleTheme/>
+                                <MainMenu.DefaultItems.ClearCanvas/>
+                                <MainMenu.DefaultItems.ChangeCanvasBackground/>
+                            </MainMenu.Group>
+                            </MainMenu>
+                        </Excalidraw>
+                    </div>
+                </div>
+            </div>
+        ) 
     }
 
 
@@ -213,7 +235,7 @@ function CardCreationMainPage() {
                     {renderStorySegmentComponent()}
                 </div>
 
-                <div className={`creation-body-part h-full ${shift === 2 ? 'card-left-part': ''}`}>
+                <div className={`creation-body-part h-full ${shift === 2 ? 'card-right-part': ''}`}>
                     {renderImageGenerationComponent()}
                 </div>
 

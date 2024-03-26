@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@excalidraw/excalidraw": "^0.17.3",
     "@lexical/file": "^0.14.2",
     "@lexical/react": "^0.14.2",
     "@reduxjs/toolkit": "^2.2.1",
